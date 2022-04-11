@@ -16,6 +16,10 @@
 		84883CE9280429B1007F0DB9 /* GitReposTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CE8280429B1007F0DB9 /* GitReposTests.swift */; };
 		84883CF3280429B1007F0DB9 /* GitReposUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CF2280429B1007F0DB9 /* GitReposUITests.swift */; };
 		84883CF5280429B1007F0DB9 /* GitReposUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CF4280429B1007F0DB9 /* GitReposUITestsLaunchTests.swift */; };
+		84883D0628042A61007F0DB9 /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0528042A61007F0DB9 /* GitHubRepository.swift */; };
+		84883D0A28042A9B007F0DB9 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0928042A9B007F0DB9 /* ApiError.swift */; };
+		84883D0C28042ABE007F0DB9 /* ApiTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0B28042ABE007F0DB9 /* ApiTask.swift */; };
+		84883D0E28042AE8007F0DB9 /* GitHubApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0D28042AE8007F0DB9 /* GitHubApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		84883CEE280429B1007F0DB9 /* GitReposUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitReposUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84883CF2280429B1007F0DB9 /* GitReposUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitReposUITests.swift; sourceTree = "<group>"; };
 		84883CF4280429B1007F0DB9 /* GitReposUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitReposUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		84883D0528042A61007F0DB9 /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
+		84883D0928042A9B007F0DB9 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		84883D0B28042ABE007F0DB9 /* ApiTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTask.swift; sourceTree = "<group>"; };
+		84883D0D28042AE8007F0DB9 /* GitHubApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		84883CD0280429AF007F0DB9 /* GitRepos */ = {
 			isa = PBXGroup;
 			children = (
+				84883D0128042A12007F0DB9 /* Apis */,
 				84883CD1280429AF007F0DB9 /* AppDelegate.swift */,
 				84883CD3280429AF007F0DB9 /* SceneDelegate.swift */,
 				84883CD5280429AF007F0DB9 /* ViewController.swift */,
@@ -125,6 +134,25 @@
 				84883CF4280429B1007F0DB9 /* GitReposUITestsLaunchTests.swift */,
 			);
 			path = GitReposUITests;
+			sourceTree = "<group>";
+		};
+		84883D0128042A12007F0DB9 /* Apis */ = {
+			isa = PBXGroup;
+			children = (
+				84883D0228042A1A007F0DB9 /* Entities */,
+				84883D0928042A9B007F0DB9 /* ApiError.swift */,
+				84883D0B28042ABE007F0DB9 /* ApiTask.swift */,
+				84883D0D28042AE8007F0DB9 /* GitHubApi.swift */,
+			);
+			path = Apis;
+			sourceTree = "<group>";
+		};
+		84883D0228042A1A007F0DB9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				84883D0528042A61007F0DB9 /* GitHubRepository.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84883D0628042A61007F0DB9 /* GitHubRepository.swift in Sources */,
 				84883CD6280429AF007F0DB9 /* ViewController.swift in Sources */,
 				84883CD2280429AF007F0DB9 /* AppDelegate.swift in Sources */,
+				84883D0A28042A9B007F0DB9 /* ApiError.swift in Sources */,
 				84883CD4280429AF007F0DB9 /* SceneDelegate.swift in Sources */,
+				84883D0E28042AE8007F0DB9 /* GitHubApi.swift in Sources */,
+				84883D0C28042ABE007F0DB9 /* ApiTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
