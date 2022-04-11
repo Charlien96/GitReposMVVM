@@ -22,15 +22,26 @@ class ListInteractorTests: XCTestCase {
     }
 
  
-    func testGet() {
+    func testGetRepo_success() {
         
-        let request = SearchLanguageRequest(language:"Swift", page:1)
+        let request = SearchLanguageRequest(language:"search_responce_success", page:1)
 
         listController.presenter?.dependencies.interactor.fetchSearch(request: request, language:"Swift", page: 1)
         
         
         XCTAssertEqual(        listController.presenter?.entities.gitHubRepositories.count
 , 30)
+    }
+    
+    func testGetRepo_failure() {
+        
+        let request = SearchLanguageRequest(language:"search_responce_failure", page:1)
+
+        listController.presenter?.dependencies.interactor.fetchSearch(request: request, language:"Swift", page: 1)
+        
+        
+        XCTAssertEqual(        listController.presenter?.entities.gitHubRepositories.count
+, 0)
     }
 
 }

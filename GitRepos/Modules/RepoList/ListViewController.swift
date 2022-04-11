@@ -49,14 +49,14 @@ extension ListViewController: ListViewInputs {
     func reloadTableView(tableViewDataSource: ListTableViewDataSource) {
         self.tableViewDataSource = tableViewDataSource
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
+            self?.tableView?.reloadData()
         }
     }
 
     func indicatorView(animate: Bool) {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: animate ? 50 : 0, right: 0)
-            _ = animate ? self?.indicatorView.startAnimating() : self?.indicatorView.stopAnimating()
+            self?.tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: animate ? 50 : 0, right: 0)
+            _ = animate ? self?.indicatorView?.startAnimating() : self?.indicatorView?.stopAnimating()
         }
     }
 }
