@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		84883CD2280429AF007F0DB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CD1280429AF007F0DB9 /* AppDelegate.swift */; };
 		84883CD4280429AF007F0DB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CD3280429AF007F0DB9 /* SceneDelegate.swift */; };
-		84883CD6280429AF007F0DB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CD5280429AF007F0DB9 /* ViewController.swift */; };
 		84883CD9280429AF007F0DB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84883CD7280429AF007F0DB9 /* Main.storyboard */; };
 		84883CDB280429B1007F0DB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84883CDA280429B1007F0DB9 /* Assets.xcassets */; };
 		84883CDE280429B1007F0DB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84883CDC280429B1007F0DB9 /* LaunchScreen.storyboard */; };
@@ -39,6 +38,9 @@
 		84883D3428042E4D007F0DB9 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3328042E4D007F0DB9 /* ListInteractor.swift */; };
 		84883D3628042E6B007F0DB9 /* ListEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3528042E6B007F0DB9 /* ListEntities.swift */; };
 		84883D3828042E86007F0DB9 /* ListRouterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3728042E86007F0DB9 /* ListRouterOutput.swift */; };
+		84883D3A28042EED007F0DB9 /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3928042EED007F0DB9 /* ListInteractorTests.swift */; };
+		84883D3C28042F0F007F0DB9 /* FakeApiTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3B28042F0F007F0DB9 /* FakeApiTask.swift */; };
+		84883D3E28042F40007F0DB9 /* search_responce_success.json in Resources */ = {isa = PBXBuildFile; fileRef = 84883D3D28042F3F007F0DB9 /* search_responce_success.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +64,6 @@
 		84883CCE280429AF007F0DB9 /* GitRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84883CD1280429AF007F0DB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84883CD3280429AF007F0DB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		84883CD5280429AF007F0DB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84883CD8280429AF007F0DB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84883CDA280429B1007F0DB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84883CDD280429B1007F0DB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,6 +96,9 @@
 		84883D3328042E4D007F0DB9 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		84883D3528042E6B007F0DB9 /* ListEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEntities.swift; sourceTree = "<group>"; };
 		84883D3728042E86007F0DB9 /* ListRouterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouterOutput.swift; sourceTree = "<group>"; };
+		84883D3928042EED007F0DB9 /* ListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractorTests.swift; sourceTree = "<group>"; };
+		84883D3B28042F0F007F0DB9 /* FakeApiTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeApiTask.swift; sourceTree = "<group>"; };
+		84883D3D28042F3F007F0DB9 /* search_responce_success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_responce_success.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +154,6 @@
 				84883D0128042A12007F0DB9 /* Apis */,
 				84883CD1280429AF007F0DB9 /* AppDelegate.swift */,
 				84883CD3280429AF007F0DB9 /* SceneDelegate.swift */,
-				84883CD5280429AF007F0DB9 /* ViewController.swift */,
 				84883CD7280429AF007F0DB9 /* Main.storyboard */,
 				84883CDA280429B1007F0DB9 /* Assets.xcassets */,
 				84883CDC280429B1007F0DB9 /* LaunchScreen.storyboard */,
@@ -163,6 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				84883CE8280429B1007F0DB9 /* GitReposTests.swift */,
+				84883D3928042EED007F0DB9 /* ListInteractorTests.swift */,
+				84883D3B28042F0F007F0DB9 /* FakeApiTask.swift */,
+				84883D3D28042F3F007F0DB9 /* search_responce_success.json */,
 			);
 			path = GitReposTests;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84883D3E28042F40007F0DB9 /* search_responce_success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +396,6 @@
 				84883D3228042E33007F0DB9 /* ListPresenter.swift in Sources */,
 				84883D3428042E4D007F0DB9 /* ListInteractor.swift in Sources */,
 				84883D1B28042BFB007F0DB9 /* Collection.swift in Sources */,
-				84883CD6280429AF007F0DB9 /* ViewController.swift in Sources */,
 				84883D2E28042DD9007F0DB9 /* ListViewController.swift in Sources */,
 				84883D2228042CAF007F0DB9 /* DetailPresenter.swift in Sources */,
 				84883CD2280429AF007F0DB9 /* AppDelegate.swift in Sources */,
@@ -408,7 +414,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84883D3A28042EED007F0DB9 /* ListInteractorTests.swift in Sources */,
 				84883CE9280429B1007F0DB9 /* GitReposTests.swift in Sources */,
+				84883D3C28042F0F007F0DB9 /* FakeApiTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
