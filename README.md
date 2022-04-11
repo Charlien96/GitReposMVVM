@@ -2,12 +2,12 @@
 
 ## Sample App
 
-<img src="./READMEResources/repoList.png" width="50%"><img src="./READMEResources/ProjectTree.png" width="50%">
+<img src="./ReadMeFiles/repoList.png" width="50%">
 
-<img src="./READMEResources/repoDetails.png" width="50%"><img src="./READMEResources/ProjectTree.png" width="50%">
+<img src="./ReadMeFiles/repoDetails.png" width="50%">
 
 ### Architecture
-<img src="./READMEResources/diagram.jpg" width="100%">
+<img src="./ReadMeFiles/diagram.jpg" width="100%">
 
 
 
