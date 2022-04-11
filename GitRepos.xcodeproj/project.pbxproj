@@ -20,6 +20,12 @@
 		84883D0A28042A9B007F0DB9 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0928042A9B007F0DB9 /* ApiError.swift */; };
 		84883D0C28042ABE007F0DB9 /* ApiTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0B28042ABE007F0DB9 /* ApiTask.swift */; };
 		84883D0E28042AE8007F0DB9 /* GitHubApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0D28042AE8007F0DB9 /* GitHubApi.swift */; };
+		84883D1128042B54007F0DB9 /* Routerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1028042B54007F0DB9 /* Routerable.swift */; };
+		84883D1328042B84007F0DB9 /* Presenterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1228042B84007F0DB9 /* Presenterable.swift */; };
+		84883D1528042B9F007F0DB9 /* Viewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1428042B9F007F0DB9 /* Viewable.swift */; };
+		84883D1728042BC2007F0DB9 /* Interactorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1628042BC2007F0DB9 /* Interactorable.swift */; };
+		84883D1928042BDD007F0DB9 /* TableViewItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1828042BDD007F0DB9 /* TableViewItemDataSource.swift */; };
+		84883D1B28042BFB007F0DB9 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1A28042BFB007F0DB9 /* Collection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		84883D0928042A9B007F0DB9 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		84883D0B28042ABE007F0DB9 /* ApiTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTask.swift; sourceTree = "<group>"; };
 		84883D0D28042AE8007F0DB9 /* GitHubApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApi.swift; sourceTree = "<group>"; };
+		84883D1028042B54007F0DB9 /* Routerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routerable.swift; sourceTree = "<group>"; };
+		84883D1228042B84007F0DB9 /* Presenterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenterable.swift; sourceTree = "<group>"; };
+		84883D1428042B9F007F0DB9 /* Viewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewable.swift; sourceTree = "<group>"; };
+		84883D1628042BC2007F0DB9 /* Interactorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactorable.swift; sourceTree = "<group>"; };
+		84883D1828042BDD007F0DB9 /* TableViewItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewItemDataSource.swift; sourceTree = "<group>"; };
+		84883D1A28042BFB007F0DB9 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +119,7 @@
 		84883CD0280429AF007F0DB9 /* GitRepos */ = {
 			isa = PBXGroup;
 			children = (
+				84883D0F28042B41007F0DB9 /* Utility */,
 				84883D0128042A12007F0DB9 /* Apis */,
 				84883CD1280429AF007F0DB9 /* AppDelegate.swift */,
 				84883CD3280429AF007F0DB9 /* SceneDelegate.swift */,
@@ -153,6 +166,19 @@
 				84883D0528042A61007F0DB9 /* GitHubRepository.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		84883D0F28042B41007F0DB9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				84883D1028042B54007F0DB9 /* Routerable.swift */,
+				84883D1228042B84007F0DB9 /* Presenterable.swift */,
+				84883D1428042B9F007F0DB9 /* Viewable.swift */,
+				84883D1628042BC2007F0DB9 /* Interactorable.swift */,
+				84883D1828042BDD007F0DB9 /* TableViewItemDataSource.swift */,
+				84883D1A28042BFB007F0DB9 /* Collection.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +312,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84883D1128042B54007F0DB9 /* Routerable.swift in Sources */,
 				84883D0628042A61007F0DB9 /* GitHubRepository.swift in Sources */,
+				84883D1728042BC2007F0DB9 /* Interactorable.swift in Sources */,
+				84883D1528042B9F007F0DB9 /* Viewable.swift in Sources */,
+				84883D1328042B84007F0DB9 /* Presenterable.swift in Sources */,
+				84883D1928042BDD007F0DB9 /* TableViewItemDataSource.swift in Sources */,
+				84883D1B28042BFB007F0DB9 /* Collection.swift in Sources */,
 				84883CD6280429AF007F0DB9 /* ViewController.swift in Sources */,
 				84883CD2280429AF007F0DB9 /* AppDelegate.swift in Sources */,
 				84883D0A28042A9B007F0DB9 /* ApiError.swift in Sources */,
