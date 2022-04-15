@@ -11,11 +11,7 @@ struct DetailRouterInput {
 
     private func view(entryEntity: DetailEntryEntity) -> DetailViewController {
         let view = DetailViewController()
-        let interactor = DetailInteractor()
-        let dependencies = DetailPresenterDependencies(interactor: interactor, router: DetailRouterOutput(view))
-        let presenter = DetailPresenter(entities: DetailEntities(entryEntity: entryEntity), view: view, dependencies: dependencies)
-        view.presenter = presenter
-        interactor.presenter = presenter
+        view.viewModel = DetailViewModel(entities: DetailEntities(entryEntity: entryEntity), view: view)
         return view
     }
 
@@ -35,3 +31,4 @@ final class DetailRouterOutput: Routerable {
     }
 
 }
+

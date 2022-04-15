@@ -7,10 +7,9 @@
 
 import Foundation
 
+
 protocol GitHubApiType {
     func search(with request: SearchLanguageRequest, completion:@escaping((Result<SearchRepositoriesResponse, ApiError>) -> Void))
-
-//    func search(with request: SearchLanguageRequest, onSuccess: @escaping (SearchRepositoriesResponse) -> Void, onError: @escaping (Error) -> Void)
 }
 
 struct SearchLanguageRequest: Request {
@@ -46,18 +45,6 @@ struct GitHubApi: GitHubApiType {
             completion(.failure(ApiError.recieveNilResponse))
         }
     }
-    
-    
-//    func search(with request: SearchLanguageRequest, onSuccess: @escaping (SearchRepositoriesResponse) -> Void, onError: @escaping (Error) -> Void) {
-//        ApiTask().request(.get, request: request, onSuccess: { (data, session) in
-//            do {
-//                let response = try self.parse(data)
-//                onSuccess(response)
-//            } catch {
-//                onError(ApiError.failedParse)
-//            }
-//        }, onError: onError)
-//    }
     
     private func parse(_ data: Data) throws -> SearchRepositoriesResponse {
         let response: SearchRepositoriesResponse = try JSONDecoder().decode(SearchRepositoriesResponse.self, from: data)

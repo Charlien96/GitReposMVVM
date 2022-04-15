@@ -15,7 +15,7 @@ class FakeApiTask: GitHubApiType {
         
         let bundle = Bundle(for:FakeApiTask.self)
         
-        guard let url = bundle.url(forResource: request.language, withExtension:"json"),
+        guard let url = bundle.url(forResource:request.language, withExtension:"json"),
               let data = try? Data(contentsOf: url) else {
                   completion(.failure(ApiError.recieveNilResponse))
                   return

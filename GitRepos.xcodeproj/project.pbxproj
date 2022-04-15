@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		847307F22806EE7E00A7E0BA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847307F12806EE7E00A7E0BA /* DetailViewModel.swift */; };
+		847307F42806EE9A00A7E0BA /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847307F32806EE9A00A7E0BA /* ListViewModel.swift */; };
 		84883CD2280429AF007F0DB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CD1280429AF007F0DB9 /* AppDelegate.swift */; };
 		84883CD4280429AF007F0DB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883CD3280429AF007F0DB9 /* SceneDelegate.swift */; };
 		84883CD9280429AF007F0DB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84883CD7280429AF007F0DB9 /* Main.storyboard */; };
@@ -20,27 +22,19 @@
 		84883D0C28042ABE007F0DB9 /* ApiTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0B28042ABE007F0DB9 /* ApiTask.swift */; };
 		84883D0E28042AE8007F0DB9 /* GitHubApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D0D28042AE8007F0DB9 /* GitHubApi.swift */; };
 		84883D1128042B54007F0DB9 /* Routerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1028042B54007F0DB9 /* Routerable.swift */; };
-		84883D1328042B84007F0DB9 /* Presenterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1228042B84007F0DB9 /* Presenterable.swift */; };
 		84883D1528042B9F007F0DB9 /* Viewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1428042B9F007F0DB9 /* Viewable.swift */; };
-		84883D1728042BC2007F0DB9 /* Interactorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1628042BC2007F0DB9 /* Interactorable.swift */; };
-		84883D1928042BDD007F0DB9 /* TableViewItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1828042BDD007F0DB9 /* TableViewItemDataSource.swift */; };
 		84883D1B28042BFB007F0DB9 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1A28042BFB007F0DB9 /* Collection.swift */; };
 		84883D2028042C77007F0DB9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D1F28042C77007F0DB9 /* DetailViewController.swift */; };
-		84883D2228042CAF007F0DB9 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D2128042CAF007F0DB9 /* DetailPresenter.swift */; };
-		84883D2428042CD4007F0DB9 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D2328042CD4007F0DB9 /* DetailInteractor.swift */; };
 		84883D2628042CF2007F0DB9 /* DetailEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D2528042CF2007F0DB9 /* DetailEntities.swift */; };
 		84883D2828042D0B007F0DB9 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D2728042D0B007F0DB9 /* DetailRouter.swift */; };
 		84883D2A28042D91007F0DB9 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84883D2928042D91007F0DB9 /* DetailViewController.xib */; };
 		84883D2C28042DBF007F0DB9 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84883D2B28042DBF007F0DB9 /* ListViewController.xib */; };
 		84883D2E28042DD9007F0DB9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D2D28042DD9007F0DB9 /* ListViewController.swift */; };
-		84883D3028042E09007F0DB9 /* ListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D2F28042E09007F0DB9 /* ListTableViewDataSource.swift */; };
-		84883D3228042E33007F0DB9 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3128042E33007F0DB9 /* ListPresenter.swift */; };
-		84883D3428042E4D007F0DB9 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3328042E4D007F0DB9 /* ListInteractor.swift */; };
 		84883D3628042E6B007F0DB9 /* ListEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3528042E6B007F0DB9 /* ListEntities.swift */; };
 		84883D3828042E86007F0DB9 /* ListRouterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3728042E86007F0DB9 /* ListRouterOutput.swift */; };
-		84883D3A28042EED007F0DB9 /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3928042EED007F0DB9 /* ListInteractorTests.swift */; };
 		84883D3C28042F0F007F0DB9 /* FakeApiTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84883D3B28042F0F007F0DB9 /* FakeApiTask.swift */; };
 		84883D3E28042F40007F0DB9 /* search_responce_success.json in Resources */ = {isa = PBXBuildFile; fileRef = 84883D3D28042F3F007F0DB9 /* search_responce_success.json */; };
+		84A55B2E2809ABE9001DF5D0 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A55B2D2809ABE9001DF5D0 /* ListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		847307F12806EE7E00A7E0BA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		847307F32806EE9A00A7E0BA /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		84883CCE280429AF007F0DB9 /* GitRepos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitRepos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84883CD1280429AF007F0DB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84883CD3280429AF007F0DB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,27 +74,19 @@
 		84883D0B28042ABE007F0DB9 /* ApiTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiTask.swift; sourceTree = "<group>"; };
 		84883D0D28042AE8007F0DB9 /* GitHubApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApi.swift; sourceTree = "<group>"; };
 		84883D1028042B54007F0DB9 /* Routerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routerable.swift; sourceTree = "<group>"; };
-		84883D1228042B84007F0DB9 /* Presenterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenterable.swift; sourceTree = "<group>"; };
 		84883D1428042B9F007F0DB9 /* Viewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viewable.swift; sourceTree = "<group>"; };
-		84883D1628042BC2007F0DB9 /* Interactorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactorable.swift; sourceTree = "<group>"; };
-		84883D1828042BDD007F0DB9 /* TableViewItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewItemDataSource.swift; sourceTree = "<group>"; };
 		84883D1A28042BFB007F0DB9 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		84883D1F28042C77007F0DB9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		84883D2128042CAF007F0DB9 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
-		84883D2328042CD4007F0DB9 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		84883D2528042CF2007F0DB9 /* DetailEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntities.swift; sourceTree = "<group>"; };
 		84883D2728042D0B007F0DB9 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		84883D2928042D91007F0DB9 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		84883D2B28042DBF007F0DB9 /* ListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		84883D2D28042DD9007F0DB9 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		84883D2F28042E09007F0DB9 /* ListTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewDataSource.swift; sourceTree = "<group>"; };
-		84883D3128042E33007F0DB9 /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
-		84883D3328042E4D007F0DB9 /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		84883D3528042E6B007F0DB9 /* ListEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEntities.swift; sourceTree = "<group>"; };
 		84883D3728042E86007F0DB9 /* ListRouterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouterOutput.swift; sourceTree = "<group>"; };
-		84883D3928042EED007F0DB9 /* ListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractorTests.swift; sourceTree = "<group>"; };
 		84883D3B28042F0F007F0DB9 /* FakeApiTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeApiTask.swift; sourceTree = "<group>"; };
 		84883D3D28042F3F007F0DB9 /* search_responce_success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_responce_success.json; sourceTree = "<group>"; };
+		84A55B2D2809ABE9001DF5D0 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				84883CE8280429B1007F0DB9 /* GitReposTests.swift */,
-				84883D3928042EED007F0DB9 /* ListInteractorTests.swift */,
+				84A55B2D2809ABE9001DF5D0 /* ListViewModelTests.swift */,
 				84883D3B28042F0F007F0DB9 /* FakeApiTask.swift */,
 				84883D3D28042F3F007F0DB9 /* search_responce_success.json */,
 			);
@@ -205,10 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				84883D1028042B54007F0DB9 /* Routerable.swift */,
-				84883D1228042B84007F0DB9 /* Presenterable.swift */,
 				84883D1428042B9F007F0DB9 /* Viewable.swift */,
-				84883D1628042BC2007F0DB9 /* Interactorable.swift */,
-				84883D1828042BDD007F0DB9 /* TableViewItemDataSource.swift */,
 				84883D1A28042BFB007F0DB9 /* Collection.swift */,
 			);
 			path = Utility;
@@ -228,8 +213,7 @@
 			children = (
 				84883D2928042D91007F0DB9 /* DetailViewController.xib */,
 				84883D1F28042C77007F0DB9 /* DetailViewController.swift */,
-				84883D2128042CAF007F0DB9 /* DetailPresenter.swift */,
-				84883D2328042CD4007F0DB9 /* DetailInteractor.swift */,
+				847307F12806EE7E00A7E0BA /* DetailViewModel.swift */,
 				84883D2528042CF2007F0DB9 /* DetailEntities.swift */,
 				84883D2728042D0B007F0DB9 /* DetailRouter.swift */,
 			);
@@ -241,9 +225,7 @@
 			children = (
 				84883D2B28042DBF007F0DB9 /* ListViewController.xib */,
 				84883D2D28042DD9007F0DB9 /* ListViewController.swift */,
-				84883D2F28042E09007F0DB9 /* ListTableViewDataSource.swift */,
-				84883D3128042E33007F0DB9 /* ListPresenter.swift */,
-				84883D3328042E4D007F0DB9 /* ListInteractor.swift */,
+				847307F32806EE9A00A7E0BA /* ListViewModel.swift */,
 				84883D3528042E6B007F0DB9 /* ListEntities.swift */,
 				84883D3728042E86007F0DB9 /* ListRouterOutput.swift */,
 			);
@@ -386,18 +368,13 @@
 			files = (
 				84883D1128042B54007F0DB9 /* Routerable.swift in Sources */,
 				84883D0628042A61007F0DB9 /* GitHubRepository.swift in Sources */,
-				84883D3028042E09007F0DB9 /* ListTableViewDataSource.swift in Sources */,
-				84883D1728042BC2007F0DB9 /* Interactorable.swift in Sources */,
 				84883D1528042B9F007F0DB9 /* Viewable.swift in Sources */,
-				84883D1328042B84007F0DB9 /* Presenterable.swift in Sources */,
 				84883D3628042E6B007F0DB9 /* ListEntities.swift in Sources */,
+				847307F22806EE7E00A7E0BA /* DetailViewModel.swift in Sources */,
 				84883D3828042E86007F0DB9 /* ListRouterOutput.swift in Sources */,
-				84883D1928042BDD007F0DB9 /* TableViewItemDataSource.swift in Sources */,
-				84883D3228042E33007F0DB9 /* ListPresenter.swift in Sources */,
-				84883D3428042E4D007F0DB9 /* ListInteractor.swift in Sources */,
 				84883D1B28042BFB007F0DB9 /* Collection.swift in Sources */,
 				84883D2E28042DD9007F0DB9 /* ListViewController.swift in Sources */,
-				84883D2228042CAF007F0DB9 /* DetailPresenter.swift in Sources */,
+				847307F42806EE9A00A7E0BA /* ListViewModel.swift in Sources */,
 				84883CD2280429AF007F0DB9 /* AppDelegate.swift in Sources */,
 				84883D0A28042A9B007F0DB9 /* ApiError.swift in Sources */,
 				84883CD4280429AF007F0DB9 /* SceneDelegate.swift in Sources */,
@@ -406,7 +383,6 @@
 				84883D2628042CF2007F0DB9 /* DetailEntities.swift in Sources */,
 				84883D2828042D0B007F0DB9 /* DetailRouter.swift in Sources */,
 				84883D2028042C77007F0DB9 /* DetailViewController.swift in Sources */,
-				84883D2428042CD4007F0DB9 /* DetailInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,9 +390,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84883D3A28042EED007F0DB9 /* ListInteractorTests.swift in Sources */,
 				84883CE9280429B1007F0DB9 /* GitReposTests.swift in Sources */,
 				84883D3C28042F0F007F0DB9 /* FakeApiTask.swift in Sources */,
+				84A55B2E2809ABE9001DF5D0 /* ListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

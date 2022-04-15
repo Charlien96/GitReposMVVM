@@ -8,22 +8,15 @@
 import UIKit
 import WebKit
 
-
 protocol DetailViewInputs: AnyObject {
-    func configure(entities: DetailEntities)
+    func configure(entities: DetailEntities?)
     func requestWebView(with request: URLRequest)
     func indicatorView(animate: Bool)
 }
 
-protocol DetailViewOutputs: AnyObject {
-    func viewDidLoad()
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
-}
-
-
 final class DetailViewController: UIViewController {
 
-    internal var presenter: DetailViewOutputs?
+    internal var viewModel: DetailViewModel?
 
     @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var webView: WKWebView! {
@@ -34,21 +27,27 @@ final class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
+        
+        if let urlStr = viewModel?.entities.entryEntity.gitHubRepository.url , let url = URL(string: urlStr) {
+            requestWebView(with: URLRequest(url:url))
+            indicatorView(animate: true)
+            configure(entities: viewModel?.entities)
+        }
+      
     }
 }
 
 
 extension DetailViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        presenter?.webView(webView, didFinish: navigation)
+        indicatorView(animate: false)
     }
 }
 
 extension DetailViewController: DetailViewInputs {
 
-    func configure(entities: DetailEntities) {
-        navigationItem.title = entities.entryEntity.gitHubRepository.fullName
+    func configure(entities: DetailEntities?) {
+        navigationItem.title = viewModel?.entities.entryEntity.gitHubRepository.fullName ?? ""
     }
 
     func requestWebView(with request: URLRequest) {
