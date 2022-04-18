@@ -1,4 +1,4 @@
-# GitRepos (View, Interactor, Presenter, Entity, Router)
+# GitRepos (Model, View, View Model)
 
 ## Sample App
 
@@ -7,13 +7,13 @@
 <img src="./ReadMeFiles/repoDetails.png" width="50%">
 
 ### Architecture
-<img src="./ReadMeFiles/diagram.jpg" width="100%">
+<img src="./ReadMeFiles/diagram.png" width="100%">
 
 
 
 ## Description
   
-GitRepos is follwing VIPER  architecture.   
+GitRepos is follwing MVVM  architecture.   
 
 ### View (including UIViewController)
 View must implement Viewable. Viewable has Default Extension.  
@@ -23,10 +23,7 @@ View must implement Viewable. Viewable has Default Extension.
 
 protocol Viewable: AnyObject {
     func push(_ vc: UIViewController, animated: Bool)
-    func present(_ vc: UIViewController, animated: Bool)
     func pop(animated: Bool)
-    func dismiss(animated: Bool)
-    func dismiss(animated: Bool, completion: @escaping (() -> Void))
 }
 
 extension Viewable where Self: UIViewController {
@@ -35,38 +32,52 @@ extension Viewable where Self: UIViewController {
         self.navigationController?.pushViewController(vc, animated: animated)
     }
 
-
     func pop(animated: Bool) {
         self.navigationController?.popViewController(animated: animated)
     }
 
+    var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
+
 }
-
-
 ```
 
 Example
 
 ```swift
 
-protocol ViewInputs: AnyObject {
-    
-}
-
-protocol ViewOutputs: AnyObject {
-    func viewDidLoad()
+protocol ListViewInputs: AnyObject {
+    func configure(entities: ListEntities?)
+    func reloadTableView()
+    func indicatorView(animate: Bool)
 }
 
 final class ListViewController: UIViewController {
 
-    internal var presenter: ViewOutputs?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter?.viewDidLoad()
+    internal var viewModel: ListViewModel?
+    internal var router: ListRouterOutput?
+    
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
     }
     
-    ...
+    @IBOutlet private weak var indicatorView: UIActivityIndicatorView!
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configure(entities: viewModel?.entities)
+        let request = SearchLanguageRequest(language:"Swift", page:1)
+
+        viewModel?.fetchSearch(request: request)
+    }
 
 }
 
@@ -76,160 +87,92 @@ extension ListViewController: Viewable {}
 
 ```
 
-
-### Interactor
-Interactor must implement Interactorable. But Interactorable has no properties.  
-
-```swift
-protocol Interactorable {
-    // nop
-}
-
-```
+### ViewModel
+ViewModel handles all interaction with the model.
 
 Example
-
 ```swift
 
-protocol InteractorOutputs: AnyObject {
-
-}
-
-final class Interactor: Interactorable {
-
-    weak var presenter: InteractorOutputs?
+class ListViewModel {
     
-}
-
-
-```
-
-### Presenter
-Presenter must implement Presenterable.
-
-```swift
-protocol Presenterable {
-    associatedtype I: Interactorable
-    associatedtype R: Routerable
-    var dependencies: (interactor: I, router: R) { get }
-}
-
-```
-
-Example
-
-```swift
-
-/// Must not import UIKit
-
-typealias PresenterDependencies = (
-    interactor: Interactor,
-    router: RouterOutput
-)
-
-final class Presenter: Presenterable {
+    var entities: ListEntities
+    private var gitHubApi: GitHubApiType
+    private weak var view: ListViewInputs!
     
-    ...
-    
-    internal var entities: Entities
-    private weak var view: ViewInputs!
-    let dependencies: PresenterDependencies
-
-    init(entities: Entities,
-         view: ViewInputs,
-         dependencies: PresenterDependencies)
-    {
-        self.view = view
+    init(gitHubApi: GitHubApiType, entities: ListEntities, view: ListViewInputs ) {
+        self.gitHubApi = gitHubApi
         self.entities = entities
-        self.dependencies = dependencies
-    }
-    
-    ...
-}
-
-```
-
-### Entity
-Entity has no protocol. 
-
-Example
-
-```swift
-
-struct EntryEntity {}
-
-final class Entities {
-    let entryEntity: EntryEntity
-    
-    var entities: [SomeEntity] = []
-
-    init(entryEntity: EntryEntity) {
-        self.entryEntity = entryEntity
-    }
-}
-
-```
-
-
-### Router
-Router must implement Routerable.
-
-
-```swift
-protocol Routerable {
-    var view: Viewable! { get }
-    func pop(animated: Bool)
-}
-
-extension Routerable {
-    func pop(animated: Bool) {
-        view.pop(animated: animated)
-    }
-}
-
-```
-
-Example
-
-```swift
-
-struct RouterInput {
-
-    private func view(entryEntity: EntryEntity) -> ViewController {
-        let view = ViewController()
-        let interactor = Interactor()
-        let dependencies = PresenterDependencies(interactor: interactor, router: RouterOutput(view))
-        let presenter = Presenter(entities: Entities(entryEntity: entryEntity), view: view, dependencies: dependencies)
-        view.presenter = presenter
-        interactor.presenter = presenter
-        return view
-    }
-
-    func push(from: Viewable, entryEntity: EntryEntity) {
-        let view = self.view(entryEntity: entryEntity)
-        from.push(view, animated: true)
-    }
-
-}
-
-final class RouterOutput: Routerable {
-
-    private(set) weak var view: Viewable!
-
-    init(_ view: Viewable) {
         self.view = view
     }
-
-    func transitionToOther() {
-        OtherRouterInput().push(from: view, entryEntity: OtherEntryEntity())
+    
+    func fetchSearch(request: SearchLanguageRequest) {
+        fetchRepo(request: request)
     }
+
+```
+
+###Model
+Contains the functions to retrieve the information for the ViewModel.
+
+Example
+```swift
+
+public enum HttpMethod: String {
+    case get = "GET"
+    case post = "POST"
 }
+
+public protocol Request {
+    var url: String { get }
+    func params() -> [(key: String, value: String)]
+}
+
+protocol ApiProtocol {
+    func request(_ httpMethod: HttpMethod, request: Request, onSuccess: @escaping (Data, URLResponse?) -> Void, onError: @escaping (Error) -> Void)
+
+}
+
+open class ApiTask: ApiProtocol {
+
+    public var httpHeader: [String: String]? = ["content-type": "application/json"]
+    public var timeoutInterval: TimeInterval = 60
+    public var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
+    static let apiTaskSession: URLSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
+
+    public init() {}
+
+    public func request(_ httpMethod: HttpMethod, request: Request, onSuccess: @escaping (Data, URLResponse?) -> Void, onError: @escaping (Error) -> Void) {
+        
+        guard let urlRequest = URLRequestCreator.create(httpMethod: httpMethod,
+                                                  request: request,
+                                                  header: httpHeader,
+                                                  timeoutInterval: timeoutInterval,
+                                                        cachePolicy: cachePolicy) else {
+            return
+        }
+        let task = ApiTask.apiTaskSession.dataTask(with: urlRequest, completionHandler: {(data, response, error) in
+            
+            if let error = error {
+                onError(error)
+                return
+            }
+            if let responseError = ApiTask.check(response: response) {
+                onError(responseError)
+                return
+            }
+            guard let data = data else {
+                onError(ApiError.recieveNilBody)
+                return
+            }
+            onSuccess(data, response)
+        })
+        task.resume()
+    }
 
 ```
 
 ### Unit Test 
-
-* added test cases for Interactor layer. 
+ 
 * used fakeApiTask class to input this class to mock api  behaviour 
 
 ### Xcode Template ( xctemplate )
