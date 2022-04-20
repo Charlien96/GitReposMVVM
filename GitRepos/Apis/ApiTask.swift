@@ -2,7 +2,7 @@
 //  ApiTask.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import Foundation
@@ -18,59 +18,35 @@ public protocol Request {
 }
 
 protocol ApiProtocol {
-    func request(_ httpMethod: HttpMethod, request: Request, onSuccess: @escaping (Data, URLResponse?) -> Void, onError: @escaping (Error) -> Void)
-
+    func request(_ httpMethod: HttpMethod, request: Request, completion: @escaping (Data?, Int, Error?) -> Void)
 }
 
 open class ApiTask: ApiProtocol {
-
-    public var httpHeader: [String: String]? = ["content-type": "application/json"]
-    public var timeoutInterval: TimeInterval = 60
-    public var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
-    static let apiTaskSession: URLSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
-
-    public init() {}
-
-    public func request(_ httpMethod: HttpMethod, request: Request, onSuccess: @escaping (Data, URLResponse?) -> Void, onError: @escaping (Error) -> Void) {
+    func request(_ httpMethod: HttpMethod, request: Request, completion: @escaping (Data?, Int, Error?) -> Void) {
         
         guard let urlRequest = URLRequestCreator.create(httpMethod: httpMethod,
                                                   request: request,
                                                   header: httpHeader,
-                                                  timeoutInterval: timeoutInterval,
+                                                        timeoutInterval: Constants.timeoutInterval,
                                                         cachePolicy: cachePolicy) else {
             return
         }
         let task = ApiTask.apiTaskSession.dataTask(with: urlRequest, completionHandler: {(data, response, error) in
             
-            if let error = error {
-                onError(error)
-                return
-            }
-            if let responseError = ApiTask.check(response: response) {
-                onError(responseError)
-                return
-            }
-            guard let data = data else {
-                onError(ApiError.recieveNilBody)
-                return
-            }
-            onSuccess(data, response)
+            completion(data, (response as! HTTPURLResponse).statusCode, error)
         })
         task.resume()
     }
+    
 
-    static func createError(_ code: ApiError, _ info: [String: Any]?) -> NSError {
-        return NSError(domain: "ApiError", code: code.rawValue, userInfo: info)
-    }
+    private let httpHeader: [String: String]? = ["content-type": "application/json"]
+    private let cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalCacheData
+    static let apiTaskSession: URLSession = URLSession(configuration: URLSessionConfiguration.ephemeral)
 
-    static internal func check(response: URLResponse?) -> NSError? {
-        guard let notNilResponse = response else {
-            return createError(.recieveNilResponse, nil)
-        }
-
-        let httpResponse = notNilResponse as! HTTPURLResponse
-        guard (200..<300) ~= httpResponse.statusCode else {
-            return createError(.recieveErrorHttpStatus, ["statusCode": httpResponse.statusCode])
+    static internal func check(statusCode: Int) -> ApiError? {
+        
+        guard (200..<300) ~= statusCode else {
+            return ApiError.customError(statusCode)
         }
         return nil
     }
@@ -87,10 +63,8 @@ public class URLRequestCreator {
         var url:URL?
         if httpMethod == .get {
             url = URL(string: appendGetParameter(url: request.url, parameter: URLEncoder.encode(request.params())))
-        } else {
-//            url = URL(string: request.url)
-//            urlRequest.httpBody = URLEncoder.encode(request.params()).data(using: String.Encoding.utf8, allowLossyConversion: false)
         }
+        
         guard let url = url else {
             return nil
         }
@@ -119,20 +93,6 @@ public class URLRequestCreator {
             separator = "?"
         }
         return [url, parameter].joined(separator: separator)
-    }
-
-    static private func debugRequest(with urlRequest: URLRequest) {
-        let details: [String] = [
-            "timeoutInterval: \(urlRequest.timeoutInterval)",
-            "method: \(urlRequest.httpMethod ?? "")",
-            "cachePolicy: \(urlRequest.cachePolicy)",
-            "allHTTPHeaderFields: \(urlRequest.allHTTPHeaderFields ?? [:])",
-            "body: \(String(data: urlRequest.httpBody ?? Data(), encoding: .utf8) ?? "")"
-        ]
-        let detail: String = details.joined(separator: ", ")
-        print(#file, #function)
-        print("Request: {url: \(urlRequest.url?.absoluteString ?? "")}")
-        print("Request Detail: {\(detail)}")
     }
 }
 

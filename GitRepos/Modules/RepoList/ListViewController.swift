@@ -2,18 +2,23 @@
 //  ListViewController.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import UIKit
+
+enum RepoPage: Int {
+    case startPage = 1
+}
 
 protocol ListViewInputs: AnyObject {
     func configure(entities: ListEntities?)
     func reloadTableView()
     func indicatorView(animate: Bool)
+    func showErrorMessage(message: String)
 }
 
-final class ListViewController: UIViewController {
+final class ListViewController: UIViewController, Viewable {
 
     internal var viewModel: ListViewModel?
     internal var router: ListRouterOutput?
@@ -31,7 +36,8 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure(entities: viewModel?.entities)
-        let request = SearchLanguageRequest(language:"Swift", page:1)
+        
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:RepoPage.startPage.rawValue)
 
         viewModel?.fetchSearch(request: request)
     }
@@ -39,9 +45,19 @@ final class ListViewController: UIViewController {
 }
 
 extension ListViewController: ListViewInputs {
-
+    
+    func showErrorMessage(message: String) {
+        let alertController = UIAlertController(title: Constants.AlertTitle, message:message, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title:Constants.AlertActionOk, style: .cancel, handler: { action in
+            
+        }))
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
     func configure(entities: ListEntities?) {
-        navigationItem.title = "\(entities?.entryEntity.language ?? "") Repositories"
+        navigationItem.title = "\(entities?.entryEntity.language ?? "") \(NSLocalizedString("list_screen_title", comment: ""))"
     }
 
     func reloadTableView() {
@@ -52,8 +68,7 @@ extension ListViewController: ListViewInputs {
 
     func indicatorView(animate: Bool) {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: animate ? 50 : 0, right: 0)
-            _ = animate ? self?.indicatorView?.startAnimating() : self?.indicatorView?.stopAnimating()
+            animate ? self?.indicatorView?.startAnimating() : self?.indicatorView?.stopAnimating()
         }
     }
 }
@@ -61,12 +76,12 @@ extension ListViewController: ListViewInputs {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.entities.gitHubRepositories.count ?? 0
+        return viewModel?.entities?.gitHubRepositories.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let repo = viewModel?.entities.gitHubRepositories[safe: indexPath.row] else { return UITableViewCell() }
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "subtitle")
+        guard let repo = viewModel?.entities?.gitHubRepositories[safe: indexPath.row] else { return UITableViewCell() }
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: Constants.listCellIdentifier)
         cell.textLabel?.text = "\(repo.fullName)"
         cell.detailTextLabel?.textColor = UIColor.lightGray
         cell.detailTextLabel?.text = "\(repo.description)"
@@ -75,7 +90,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let selectedRepo = viewModel?.entities.gitHubRepositories[safe: indexPath.row] else { return }
+        guard let selectedRepo = viewModel?.entities?.gitHubRepositories[safe: indexPath.row] else { return }
         router?.transitionDetail(gitHubRepository: selectedRepo)
     }
 
@@ -83,9 +98,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let visibleLastIndexPath = tableView.visibleCells.compactMap { [weak self] in
             self?.tableView.indexPath(for: $0)
         }.last
-        guard let last = visibleLastIndexPath, last.row > (viewModel?.entities.gitHubRepositories.count ?? 0) - 2 else { return }
+        guard let last = visibleLastIndexPath, last.row > (viewModel?.entities?.gitHubRepositories.count ?? 0) - Constants.seacondLastCell else { return }
         viewModel?.onReachBottom()
     }
 }
-
-extension ListViewController: Viewable {}

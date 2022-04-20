@@ -2,7 +2,7 @@
 //  GitHubApi.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import Foundation
@@ -32,22 +32,39 @@ struct SearchLanguageRequest: Request {
 
 struct GitHubApi: GitHubApiType {
   
+    let apiTask: ApiProtocol
+    
     func search(with request: SearchLanguageRequest, completion: @escaping((Result<SearchRepositoriesResponse, ApiError>) -> Void)) {
        
-        ApiTask().request(.get, request: request) { (data, session) in
+        apiTask.request(.get, request: request) { data, statusCode, error in
+           
+            if let error = error {
+                completion(.failure(ApiError.recieveErrorHttpStatus))
+                return
+            }
+            if let responseError = ApiTask.check(statusCode: statusCode) {
+                completion(.failure(responseError))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(ApiError.recieveNilBody))
+                return
+            }
+            
             do {
                 let response = try self.parse(data)
                 completion(.success(response))
             } catch {
                 completion(.failure(ApiError.failedParse))
             }
-        } onError: { error in
-            completion(.failure(ApiError.recieveNilResponse))
         }
+       
     }
-    
+
     private func parse(_ data: Data) throws -> SearchRepositoriesResponse {
         let response: SearchRepositoriesResponse = try JSONDecoder().decode(SearchRepositoriesResponse.self, from: data)
         return response
     }
+    
+    
 }

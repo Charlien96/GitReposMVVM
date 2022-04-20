@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ protocol DetailViewInputs: AnyObject {
     func indicatorView(animate: Bool)
 }
 
-final class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController, Viewable {
 
     internal var viewModel: DetailViewModel?
 
@@ -56,11 +56,8 @@ extension DetailViewController: DetailViewInputs {
 
     func indicatorView(animate: Bool) {
         DispatchQueue.main.async { [weak self] in
-            _ = animate ? self?.indicatorView.startAnimating() : self?.indicatorView.stopAnimating()
+            animate ? self?.indicatorView.startAnimating() : self?.indicatorView.stopAnimating()
         }
     }
 
 }
-
-extension DetailViewController: Viewable {}
-

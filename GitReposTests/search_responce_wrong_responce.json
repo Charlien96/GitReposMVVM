@@ -6,7 +6,7 @@
       "id": 14098069,
       "node_id": "MDEwOlJlcG9zaXRvcnkxNDA5ODA2OQ==",
       "name": "free-programming-books-zh_CN",
-      "full_name": "justjavac/free-programming-books-zh_CN",
+      "fullName": "justjavac/free-programming-books-zh_CN",
       "private": false,
       "owner": {
         "login": "justjavac",
@@ -3474,3 +3474,4 @@
     }
   ]
 }
+

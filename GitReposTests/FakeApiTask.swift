@@ -2,32 +2,38 @@
 //  FakeApiTask.swift
 //  GitReposTests
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import Foundation
 @testable import GitRepos
 
 
-class FakeApiTask: GitHubApiType {
+class FakeApiTask: ApiProtocol {
     
-    func search(with request: SearchLanguageRequest, completion: @escaping ((Result<SearchRepositoriesResponse, ApiError>) -> Void)) {
+    var responceType: String = ""
+    
+    func request(_ httpMethod: HttpMethod, request: Request, completion: @escaping (Data?, Int, Error?) -> Void) {
         
         let bundle = Bundle(for:FakeApiTask.self)
         
-        guard let url = bundle.url(forResource:request.language, withExtension:"json"),
+        if responceType == "file_not_found_status_code_404" {
+            completion(nil, 404, nil)
+            return
+        }
+        if responceType == "internal_server_error_status_code_500" {
+            completion(nil, 500, nil)
+            return
+        }
+        
+        guard let url = bundle.url(forResource: responceType, withExtension:"json"),
               let data = try? Data(contentsOf: url) else {
-                  completion(.failure(ApiError.recieveNilResponse))
+                  completion(nil, 200, ApiError.recieveNilResponse)
                   return
               }
         
-        do {
-            let decodedResopnce = try JSONDecoder().decode(SearchRepositoriesResponse.self, from: data)
-            completion(.success(decodedResopnce))
             
-        }catch {
-            completion(.failure(ApiError.failedParse))
-        }
-        
+        completion(data, 200  , nil)
+
     }
 }

@@ -2,7 +2,7 @@
 //  ListViewModelTests.swift
 //  GitReposTests
 //
-//  Created by Admin on 15/04/2022.
+//  Created by Charlie on 15/04/2022.
 //
 
 import XCTest
@@ -10,34 +10,107 @@ import XCTest
 
 class ListViewModelTests: XCTestCase {
 
-    var listController: ListViewController!
-
+    var listViewModel: ListViewModel!
+    var fakeApiTask: FakeApiTask!
+    
     override func setUpWithError() throws {
         
-        listController =  ListRouterInput().view(entryEntity: ListEntryEntity(language: "Swift"), gitHubApi: FakeApiTask())
+        fakeApiTask = FakeApiTask()
+        listViewModel = ListViewModel(gitHubApi:GitHubApi(apiTask:fakeApiTask ), entities:ListEntities(entryEntity: ListEntryEntity(language: "Swift")) , view: nil)
     }
 
  
-    func testGetRepo_success() {
+    func testFetchSearch_success() {
         
-        let request = SearchLanguageRequest(language:"search_responce_success", page:1)
+        fakeApiTask.responceType = "search_responce_success"
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:1)
 
-        listController.viewModel?.fetchSearch(request: request)
+        listViewModel?.fetchSearch(request: request)
         
         
-        XCTAssertEqual(        listController.viewModel?.entities.gitHubRepositories.count
+        XCTAssertEqual(        listViewModel?.entities?.gitHubRepositories.count
 , 30)
+        
+        XCTAssertNil(listViewModel.error)
     }
     
-    func testGetRepo_failure() {
+    func testOnReachBottom_success() {
+        
+        fakeApiTask.responceType = "search_responce_success"
 
-        let request = SearchLanguageRequest(language:"search_responce_failure", page:1)
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:1)
 
-        listController.viewModel?.fetchSearch(request: request)
+        listViewModel?.fetchSearch(request: request)
+        
+        listViewModel?.onReachBottom()
+        
+        
+        XCTAssertEqual(        listViewModel?.entities?.gitHubRepositories.count
+, 60)
+        
+        XCTAssertNil(listViewModel.error)
+
+    }
+    
+    func testFetchSearch_failure() {
+
+        fakeApiTask.responceType = "search_responce_failure"
+
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:1)
+
+        listViewModel?.fetchSearch(request: request)
 
 
-        XCTAssertEqual(        listController.viewModel?.entities.gitHubRepositories.count
+        XCTAssertEqual(        listViewModel?.entities?.gitHubRepositories.count
 , 0)
+        
+        XCTAssertEqual(listViewModel.error , ApiError.recieveErrorHttpStatus)
+
+    }
+    
+    func testGetRepo_failure_parsing_error() {
+
+        fakeApiTask.responceType = "search_responce_wrong_responce"
+
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:1)
+
+        listViewModel?.fetchSearch(request: request)
+
+
+        XCTAssertEqual(        listViewModel?.entities?.gitHubRepositories.count
+, 0)
+        
+        XCTAssertEqual(listViewModel.error , ApiError.failedParse)
+    }
+    
+    func testGetRepo_failure_status_code_404() {
+
+        fakeApiTask.responceType = "file_not_found_status_code_404"
+
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:1)
+
+        listViewModel?.fetchSearch(request: request)
+
+
+        XCTAssertEqual(        listViewModel?.entities?.gitHubRepositories.count
+, 0)
+        
+        XCTAssertEqual(listViewModel.error , ApiError.customError(404))
+    }
+
+    func testGetRepo_internal_server__failure_status_code_500() {
+
+        fakeApiTask.responceType = "internal_server_error_status_code_500"
+
+        let request = SearchLanguageRequest(language:Constants.searchedRepoKeyWord, page:1)
+
+        listViewModel?.fetchSearch(request: request)
+
+
+        XCTAssertEqual(        listViewModel?.entities?.gitHubRepositories.count
+, 0)
+        
+        XCTAssertEqual(listViewModel.error , ApiError.customError(500))
     }
 
 }

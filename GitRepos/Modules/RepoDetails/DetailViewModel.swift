@@ -2,7 +2,7 @@
 //  DetailViewModel.swift
 //  GitRepos
 //
-//  Created by Admin on 13/04/2022.
+//  Created by Charlie on 13/04/2022.
 //
 
 import Foundation

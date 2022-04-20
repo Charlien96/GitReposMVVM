@@ -2,15 +2,13 @@
 //  AppDelegate.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -33,4 +31,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController = UINavigationController()
         
         
-        let controller =  ListRouterInput().view(entryEntity: ListEntryEntity(language: "Swift"), gitHubApi: GitHubApi())
+        let controller =  ListRouterInput().view(entryEntity: ListEntryEntity(language: Constants.searchedRepoKeyWord), gitHubApi: GitHubApi(apiTask: ApiTask()))
         navigationController.viewControllers = [controller]
 
         window?.rootViewController = navigationController

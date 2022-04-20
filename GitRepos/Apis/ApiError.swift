@@ -2,14 +2,15 @@
 //  ApiError.swift
 //  GitRepos
 //
-//  Created by Admin on 11/04/2022.
+//  Created by Charlie on 11/04/2022.
 //
 
 import Foundation
 
-enum ApiError: Int, Error {
-    case recieveNilResponse = 0,
-    recieveErrorHttpStatus,
-    recieveNilBody,
-    failedParse
+enum ApiError: Error , Equatable {
+    case recieveNilResponse
+    case recieveErrorHttpStatus
+    case recieveNilBody
+    case failedParse
+    case customError(Int)
 }
